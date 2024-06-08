@@ -2,6 +2,7 @@ package ejlee.javatoy;
 
 import ejlee.javatoy.discount.DiscountPolicy;
 import ejlee.javatoy.discount.FixDiscountPolicy;
+import ejlee.javatoy.discount.RateDiscountPolicy;
 import ejlee.javatoy.member.MemberMemoryRepository;
 import ejlee.javatoy.member.MemberService;
 import ejlee.javatoy.member.MemberServiceImpl;
@@ -25,8 +26,9 @@ public class AppConfig {
         return getFixDiscountPolicy();
     }
 
-    private FixDiscountPolicy getFixDiscountPolicy() {
-        return new FixDiscountPolicy();
+    private RateDiscountPolicy getFixDiscountPolicy() {
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 
     private MemberMemoryRepository getMemberRepository() {
