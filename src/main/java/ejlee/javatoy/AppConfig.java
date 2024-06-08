@@ -1,5 +1,6 @@
 package ejlee.javatoy;
 
+import ejlee.javatoy.discount.DiscountPolicy;
 import ejlee.javatoy.discount.FixDiscountPolicy;
 import ejlee.javatoy.member.MemberMemoryRepository;
 import ejlee.javatoy.member.MemberService;
@@ -13,11 +14,23 @@ import ejlee.javatoy.order.OrderServiceImpl;
 public class AppConfig {
 
     public MemberService memberService() {
-        return new MemberServiceImpl(new MemberMemoryRepository());
+        return new MemberServiceImpl(getMemberRepository());
     }
 
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemberMemoryRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(getMemberRepository(), discountPolicy());
+    }
+
+    public DiscountPolicy discountPolicy() {
+        return getFixDiscountPolicy();
+    }
+
+    private FixDiscountPolicy getFixDiscountPolicy() {
+        return new FixDiscountPolicy();
+    }
+
+    private MemberMemoryRepository getMemberRepository() {
+        return new MemberMemoryRepository();
     }
 
 }
